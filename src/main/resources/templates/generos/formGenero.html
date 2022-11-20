@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MovieApp | Aplicación de gestión de películas</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h2 class="card-header" th:text="${titulo}"></h2>
+        <div class="card-body">
+            <form enctype="multipart/form-data" method="post" th:action="@{/cgeneros/guardar/}" th:object="${genero}">
+                <div class='alert alert-danger' role='alert' th:if="${#fields.hasErrors('*')}">
+                    Por favor corrija los siguientes errores:
+                    <ul>
+                        <li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>
+                    </ul>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="genero">Genero</label>
+                    <input class="form-control" id="genero" name="genero" placeholder="Escriba el genero" required="required"
+                           th:field="*{genero}" type="text">
+                </div>
+                <button class="btn btn-dark" type="submit">Guardar</button>
+                <input th:field="*{idGenero}" type="hidden"/>
+            </form>
+            <hr>
+            <a class="btn btn-primary" role="button" th:href="@{/cpeliculas/}">Ir a Inicio</a>
+            <a class="btn btn-primary" role="button" th:href="@{/cgeneros/listado/}">Ir al listado de Generos</a>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

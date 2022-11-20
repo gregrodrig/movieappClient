@@ -1,6 +1,5 @@
 package es.uah.movieappCliente.model;
 import java.sql.Time;
-import java.util.Date;
 
 public class Pelicula {
     private Integer idPelicula;
@@ -8,13 +7,13 @@ public class Pelicula {
     private Time duracion;
     private String sinopsis;
     private String imagen;
-    private Date anno;
+    private String anno;
     private Integer tblPaisIdPais;
 
     public Pelicula() {
     }
 
-    public Pelicula(Integer idPelicula, String titulo, Time duracion, String sinopsis, String imagen, Date anno, Integer tblPaisIdPais) {
+    public Pelicula(Integer idPelicula, String titulo, Time duracion, String sinopsis, String imagen, String anno, Integer tblPaisIdPais) {
         this.idPelicula = idPelicula;
         this.titulo = titulo;
         this.duracion = duracion;
@@ -64,11 +63,11 @@ public class Pelicula {
         this.imagen = imagen;
     }
 
-    public Date getAnno() {
+    public String getAnno() {
         return anno;
     }
 
-    public void setAnno(Date anno) {
+    public void setAnno(String anno) {
         this.anno = anno;
     }
 

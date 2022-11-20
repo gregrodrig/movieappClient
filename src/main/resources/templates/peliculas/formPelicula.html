@@ -1,10 +1,64 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>MovieApp | Aplicación de gestión de películas</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body>
-
+<div class="container">
+    <div class="card">
+        <h2 class="card-header" th:text="${titulo}"></h2>
+        <div class="card-body">
+            <form method="post" th:action="@{/cpeliculas/guardar/}" th:object="${pelicula}">
+                <div class='alert alert-danger' role='alert' th:if="${#fields.hasErrors('*')}">
+                    Por favor corrija los siguientes errores:
+                    <ul>
+                        <li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>
+                    </ul>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="titulo">Título</label>
+                    <input class="form-control" id="titulo" name="titulo" placeholder="Escriba el título de la película"
+                           required="required" th:field="*{titulo}" type="text">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="duracion">Duración</label>
+                    <input class="form-control" id="duracion" name="duracion"
+                           placeholder="Escriba la duración de la película en horas" required="required"
+                           th:field="*{duracion}" type="time" value="22:00">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="sinopsis">Sinopsis</label>
+                    <input class="form-control" id="sinopsis" name="sinopsis"
+                           placeholder="Escriba la sinopsis de la película" required="required" th:field="*{sinopsis}"
+                           type="text">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="imagen">Imagen</label>
+                    <input class="form-control" id="imagen" name="imagen"
+                           placeholder="Adjunta la imagen asociada a la película" required="required"
+                           th:field="*{imagen}" type="text">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="anno">Año</label>
+                    <input class="form-control" id="anno" min="1990-01-01"
+                           name="anno"
+                           placeholder="Escriba el año de creación de la película, en formato: DD/MM/YYYY" required="required" th:field="*{anno}" type="date" value="">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="pais">País</label>
+                    <input class="form-control" id="pais" name="pais" placeholder="Escriba el país de la película"
+                           required="required" th:field="*{tblPaisIdPais}" type="number">
+                </div>
+                <button class="btn btn-dark" type="submit">Guardar</button>
+                <input th:field="*{idPelicula}" type="hidden"/>
+            </form>
+            <hr>
+            <a class="btn btn-primary" role="button" th:href="@{/cpeliculas/}">Ir a Inicio</a>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/bootstrap.min.js}"></script>
 </body>
 </html>

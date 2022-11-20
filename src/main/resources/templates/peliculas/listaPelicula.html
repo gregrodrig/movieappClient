@@ -1,10 +1,57 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>MovieApp | Aplicación de gestión de películas</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body>
-
+<div class="container">
+    <div class="card">
+        <h2 class="card-header" th:text="${titulo}"></h2>
+        <div class="card-body">
+            <div class='alert alert-success' role='alert' th:if="${msg != null}" th:text="${msg}"></div>
+            <table class="table table-hover">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">Indice</th>
+                    <th scope="col">Título</th>
+                    <th scope="col">Duración</th>
+                    <th scope="col">Sinopsis</th>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Año</th>
+                    <th scope="col">País</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="pelicula : ${listadoPeliculas}">
+                    <td th:text="${pelicula.idPelicula}"></td>
+                    <td th:text="${pelicula.titulo}"></td>
+                    <td th:text="${pelicula.duracion}"></td>
+                    <td th:text="${pelicula.sinopsis}"></td>
+                    <td th:text="${pelicula.imagen}"></td>
+                    <td th:text="${pelicula.anno}"></td>
+                    <td th:text="${pelicula.tblPaisIdPais}"></td>
+                    <td><a class="btn btn-success btn-sm" role="button"
+                           th:href="@{/cpeliculas/editar/{id} (id=${pelicula.idPelicula}) }" th:text="'editar'" title="Editar la película.">
+                        <i aria-hidden="true" class="fas fa-pencil-alt"> </i>
+                    </a>
+                        <a
+                            class="btn btn-danger btn-sm" onclick="return confirm('¿Estas seguro?')"
+                            role="button" th:href="@{/cpeliculas/borrar/{id} (id=${pelicula.idPelicula}) }" th:text="'borrar'"
+                            title="Eliminar la película.">
+                            <i aria-hidden="true" class="fas fa-trash"> </i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <nav th:replace="paginator-nav :: paginator"></nav>
+        </div>
+    </div>
+    <hr>
+    <a class="btn btn-primary" role="button" th:href="@{/cpeliculas/}">Ir a Inicio</a>
+</div>
+<script th:src="@{/js/bootstrap.min.js}"></script>
 </body>
 </html>

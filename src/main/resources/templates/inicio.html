@@ -2,12 +2,12 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>MovieApp | Aplicación de gestión de peliculas</title>
+    <title>MovieApp | Aplicación de gestión de películas</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body>
 <div class="container">
-    <h1 class="text-center">Gestión de peliculas</h1>
+    <h1 class="text-center">Gestión de películas</h1>
     <hr>
     <div class="card-group">
         <div class="card">
@@ -22,8 +22,22 @@
                 <circle cx="3.5" cy="10.5" r=".5"/>
             </svg>
             <div class="card-body">
-                <h3 class="card-title">Listado de peliculas</h3>
-                <a class=" btn btn-link" th:href="@{/cpeliculas/listado}"> Listado de peliculas </a>
+                <h3 class="card-title">Listado de:</h3>
+                <a class=" btn btn-link" th:href="@{/cpeliculas/listado}">
+                    <H5>Películas</H5>
+                </a>
+                <hr>
+                <a class=" btn btn-link" th:href="@{/cgeneros/listado}">
+                    <H5>Géneros</H5>
+                </a>
+                <hr>
+                <a class=" btn btn-link" th:href="@{/cactores/listado}">
+                    <H5>Actores</H5>
+                </a>
+                <hr>
+                <a class=" btn btn-link" th:href="@{/cdirectores/listado}">
+                    <H5>Directores</H5>
+                </a>
             </div>
         </div>
         <div class="card">
@@ -34,8 +48,22 @@
                 <path d="M2.832 13.228L8 9a1 1 0 1 0-1-1l-4.228 5.168-.026.086.086-.026z" fill-rule="evenodd"/>
             </svg>
             <div class="card-body">
-                <h3 class="card-title">Nueva pelicula</h3>
-                <a class=" btn btn-link" th:href="@{/cpeliculas/nueva}"> Crear nueva pelicula </a>
+                <h3 class="card-title">Crear:</h3>
+                <a class=" btn btn-link" th:href="@{/cpeliculas/nueva}">
+                    <h5>Nueva Película </h5>
+                </a>
+                <hr>
+                <a class=" btn btn-link" th:href="@{/cgeneros/nuevo}">
+                    <h5>Nuevo Género </h5>
+                </a>
+                <hr>
+                <a class=" btn btn-link" th:href="@{/cactores/nuevo}">
+                    <h5>Nuevo Actor </h5>
+                </a>
+                <hr>
+                <a class=" btn btn-link" th:href="@{/cdirectores/nuevo}">
+                    <h5>Nuevo Director </h5>
+                </a>
             </div>
         </div>
         <div class="card">
@@ -47,8 +75,23 @@
                       fill-rule="evenodd"/>
             </svg>
             <div class="card-body">
-                <h3 class="card-title">Buscar peliculas</h3>
-                <a class=" btn btn-link" th:href="@{/cpeliculas/buscar}"> Buscar peliculas </a>
+                <h3 class="card-title">Buscar:</h3>
+                <a class=" btn btn-link" th:href="@{/cpeliculas/buscar}">
+                    <h5>Películas</h5>
+                </a>
+                <hr>
+                <a class=" btn btn-link" th:href="@{/cgeneros/buscar}">
+                    <h5>Génoros</h5>
+                </a>
+                <hr>
+                <a class=" btn btn-link" th:href="@{/cactores/buscar}">
+                    <h5>Actores</h5>
+                </a>
+                <hr>
+                <a class=" btn btn-link" th:href="@{/cdirectores/buscar}">
+                    <h5>Directores</h5>
+                </a>
+                <hr>
             </div>
         </div>
     </div>

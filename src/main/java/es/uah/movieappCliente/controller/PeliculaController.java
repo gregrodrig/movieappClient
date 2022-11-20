@@ -15,10 +15,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/cpeliculas")
 public class PeliculaController {
-    private String titulo = "titulo";
+    private String tituloVentana = "titulo";
     private String peliculasv = "pelicula";
     private String formPelicula = "peliculas/formPelicula";
     private String formBuscarPelicula = "peliculas/buscarPelicula";
+    private String listadoP = "listadoPeliculas";
     @Autowired
     IPeliculaService peliculaService;
 
@@ -27,8 +28,8 @@ public class PeliculaController {
         return "inicio";
     }
     @GetMapping("/nueva")
-    public String nuevo(Model model){
-        model.addAttribute(titulo, "Nueva pelicula");
+    public String nueva(Model model){
+        model.addAttribute(tituloVentana, "Nueva pelicula");
         Pelicula pelicula = new Pelicula();
         model.addAttribute(peliculasv, pelicula);
         return formPelicula;
@@ -42,11 +43,26 @@ public class PeliculaController {
         Pageable pageable = PageRequest.of(page, 5);
         Page<Pelicula> listado = peliculaService.buscarTodas(pageable);
         PageRender<Pelicula> pageRender = new PageRender<Pelicula>("/cpeliculas/listado", listado);
-        model.addAttribute(titulo, "Listado de todas las peliculas");
-        model.addAttribute("listadoPeliculas", listado);
+        model.addAttribute(tituloVentana, "Listado de todas las Películas");
+        model.addAttribute(listadoP, listado);
         model.addAttribute("page", pageRender);
-        return formPelicula;
+        return "peliculas/listaPelicula";
     }
+    @GetMapping("/titulo")
+    public String buscarPeliculaPorTitulo(Model model, @RequestParam(name="page", defaultValue="0") int page, @RequestParam("titulo") String titulo) {
+        Pageable pageable = PageRequest.of(page, 5);
+        Page<Pelicula> listado;
+        if (titulo.equals("")) {
+            listado = peliculaService.buscarTodas(pageable);
+        } else {
+            listado = peliculaService.buscarPeliculaPorTitulo(titulo, pageable);
+        }
+        PageRender<Pelicula> pageRender = new PageRender<Pelicula>("cpeliculas/listado", listado);
+        model.addAttribute(tituloVentana, "Listado de películas por título");
+        model.addAttribute(listadoP, listado);
+        model.addAttribute("page", pageRender);
+        return "cpeliculas/listado"; }
+
     @GetMapping("/idPelicula/{id}")
     public String buscarPeliculaPorId(Model model, @PathVariable("id") Integer id){
         Pelicula pelicula = peliculaService.buscarPeliculaPorId(id);
@@ -56,14 +72,14 @@ public class PeliculaController {
     @PostMapping("/guardar/")
     public String guardarPelicula(Model model, Pelicula pelicula, RedirectAttributes attributes){
         peliculaService.guardarPelicula(pelicula);
-        model.addAttribute(titulo, "Nueva pelicla");
+        model.addAttribute(tituloVentana, "Nueva pelicula");
         attributes.addFlashAttribute("msg", "Los datos de la pelicula fueron guardados!");
         return "redirect:/cpeliculas/listado";
     }
     @GetMapping("/editar/{id}")
     public String editarPelicula(Model model, @PathVariable("id") Integer id){
         Pelicula pelicula = peliculaService.buscarPeliculaPorId(id);
-        model.addAttribute(titulo, "Editar pelicula");
+        model.addAttribute(tituloVentana, "Editar pelicula");
         model.addAttribute(peliculasv, pelicula);
         return formPelicula;
     }
