@@ -10,7 +10,7 @@
     <div class="card">
         <h2 class="card-header" th:text="${titulo}"></h2>
         <div class="card-body">
-            <form enctype="multipart/form-data" method="post" th:action="@{/cgeneros/guardar/}" th:object="${genero}">
+            <form enctype="multipart/form-data" method="post" th:action="@{/cpaises/guardar/}" th:object="${pais}">
                 <div class='alert alert-danger' role='alert' th:if="${#fields.hasErrors('*')}">
                     Por favor corrija los siguientes errores:
                     <ul>
@@ -18,16 +18,16 @@
                     </ul>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="genero">Género</label>
-                    <input class="form-control" id="genero" name="genero" placeholder="Escriba el Género" required="required"
-                           th:field="*{genero}" type="text">
+                    <label class="form-label" for="pais">Nombre</label>
+                    <input class="form-control" id="pais" name="pais" placeholder="Escriba el nombre completo del País" required="required"
+                           th:field="*{pais}" type="text">
                 </div>
                 <button class="btn btn-dark" type="submit">Guardar</button>
-                <input th:field="*{idGenero}" type="hidden"/>
+                <input th:field="*{idPais}" type="hidden"/>
             </form>
             <hr>
             <a class="btn btn-primary" role="button" th:href="@{/cpeliculas/}">Ir a Inicio</a>
-            <a class="btn btn-primary" role="button" th:href="@{/cgeneros/listado/}">Ir al listado de Géneros</a>
+            <a class="btn btn-primary" role="button" th:href="@{/cpaises/listado/}">Ir al listado de Países</a>
         </div>
     </div>
 </div>

@@ -7,16 +7,22 @@
 </head>
 <body>
 <div class="container">
-    <h2 class="text-secondary border border-success border-top-0 border-left-0 border-right-0">Búsqueda de Películas</h2>
-    <form method="get" th:action="@{/cpeliculas/titulo}">
-        <div class="mb-3">
-            <label class="form-label" for="titulo">Título</label>
-            <input class="form-control" id="titulo" name="titulo" placeholder="Escriba el título de la película" type="text">
+    <div class="card">
+        <h2 class="card-header">Búsqueda de
+            Películas</h2>
+        <div class="card-body">
+            <form method="get" th:action="@{/cpeliculas/titulo}">
+                <div class="mb-3">
+                    <label class="form-label" for="titulo">Título</label>
+                    <input class="form-control" id="titulo" name="titulo" placeholder="Escriba el título de la película"
+                           type="text">
+                </div>
+                <button class=" btn btn-success" type="submit">Buscar por Título</button>
+            </form>
+            <hr>
+            <a class="btn btn-primary" role="button" th:href="@{/cpeliculas}">Ir a Inicio</a>
         </div>
-        <button class=" btn btn-success" type="submit">Buscar por Título</button>
-    </form>
-    <hr>
-    <a class="btn btn-primary" role="button" th:href="@{/cpeliculas}">Ir a Inicio</a>
+    </div>
 </div>
 <script th:src="@{/js/bootstrap.min.js}"></script>
 </body>

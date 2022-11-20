@@ -12,31 +12,31 @@
         <div class="card-body">
             <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
             <h4 class="card-title">
-                <a th:href="@{/cgeneros/nuevo}" class="btn btn-primary btn-xs">Crear nuevo Género</a>
+                <a th:href="@{/cpaises/nuevo}" class="btn btn-primary btn-xs">Crear nuevo País</a>
             </h4>
             <table class="table table-hover">
                 <thead class="thead-light">
                 <tr>
                     <th scope="col">Indice</th>
-                    <th scope="col">Género</th>
+                    <th scope="col">País</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="genero : ${listadoGeneros}">
-                    <td th:text="${genero.idGenero}"></td>
-                    <td th:text="${genero.genero}"></td>
+                <tr th:each="pais : ${listadoPaises}">
+                    <td th:text="${pais.idPais}"></td>
+                    <td th:text="${pais.pais}"></td>
                     <td>
-                        <a th:href="@{/cgeneros/ver/{id}  (id=${genero.idGenero})  }" th:text="'Ver'"
-                           class="btn btn-primary btn-sm" role="button" title="Ver Género en detalle.">
+                        <a th:href="@{/cpaises/ver/{id}  (id=${pais.idPais})  }" th:text="'Ver'"
+                           class="btn btn-primary btn-sm" role="button" title="Ver el País en detalle.">
                             <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                         </a>
-                        <a th:href="@{/cgeneros/editar/{id}  (id=${genero.idGenero})  }" th:text="'Editar'"
-                           class="btn btn-success btn-sm" role="button" title="Editar Género.">
+                        <a th:href="@{/cpaises/editar/{id}  (id=${pais.idPais})  }" th:text="'Editar'"
+                           class="btn btn-success btn-sm" role="button" title="Editar País.">
                             <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                         </a>
-                        <a th:href="@{/cgeneros/borrar/{id}  (id=${genero.idGenero})   }" th:text="'Borrar'"
+                        <a th:href="@{/cpaises/borrar/{id}  (id=${pais.idPais})   }" th:text="'Borrar'"
                            onclick="return confirm('¿Estas seguro?')" class="btn btn-danger btn-sm" role="button"
-                           title="Eliminar Género."><i class="fas fa-trash" aria-hidden="true"></i></a>
+                           title="Eliminar País."><i class="fas fa-trash" aria-hidden="true"></i></a>
                     </td>
                 </tr>
                 </tbody>

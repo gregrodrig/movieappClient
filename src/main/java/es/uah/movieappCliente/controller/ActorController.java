@@ -1,6 +1,7 @@
 package es.uah.movieappCliente.controller;
 
 import es.uah.movieappCliente.model.Actor;
+import es.uah.movieappCliente.model.Pelicula;
 import es.uah.movieappCliente.paginator.PageRender;
 import es.uah.movieappCliente.service.IActorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,8 +88,15 @@ public class ActorController {
     @GetMapping("/editar/{id}")
     public String editarActor(Model model, @PathVariable("id") Integer id){
         Actor actor = actorService.buscarActorPorId(id);
-        model.addAttribute(tituloVentana, "Editar Genero");
+        model.addAttribute(tituloVentana, "Editar Actor");
         model.addAttribute(actoresv, actor);
         return formActor;
+    }
+    @GetMapping(value = "/ver/{id}")
+    public String ver(Model model, @PathVariable("id") Integer id, RedirectAttributes attributes) {
+        Actor actor = actorService.buscarActorPorId(id);
+        model.addAttribute(actoresv, actor);
+        model.addAttribute(tituloVentana, "Detalles del Actor: " + actor.getNombre());
+        return "actores/verActor";
     }
 }

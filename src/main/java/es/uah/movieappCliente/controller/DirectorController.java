@@ -1,7 +1,9 @@
 package es.uah.movieappCliente.controller;
 
 
+import es.uah.movieappCliente.model.Actor;
 import es.uah.movieappCliente.model.Director;
+import es.uah.movieappCliente.model.Pelicula;
 import es.uah.movieappCliente.paginator.PageRender;
 import es.uah.movieappCliente.service.IDirectorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,12 +56,20 @@ public class DirectorController {
         return formBuscarDirector;
     }
 
-    @GetMapping("/director/{nombre}")
-    public String buscarDirectorPorNombre(Model model, @RequestParam("nombre") String nombre) {
-        Director director = directorService.buscarDirectorPorNombre(nombre);
-        model.addAttribute(directoresv, director);
-        return formBuscarDirector;
-       // return "cdirectores/listado";
+    @GetMapping("/nombre")
+    public String buscarDirectorPorNombre(Model model, @RequestParam(name="page", defaultValue="0") int page, @RequestParam("nombre") String nombre) {
+        Pageable pageable = PageRequest.of(page, 5);
+        Page<Director> listado;
+        if (nombre.equals("")) {
+            listado = directorService.buscarTodos(pageable);
+        } else {
+            listado = directorService.buscarDirectorPorNombre(nombre, pageable);
+        }
+        PageRender<Director> pageRender = new PageRender<Director>("cdirectores/nombre", listado);
+        model.addAttribute(tituloVentana, "Listado de Director por nombre");
+        model.addAttribute(listadoD, listado);
+        model.addAttribute("page", pageRender);
+        return "directores/listaDirector";
     }
 
     @PostMapping("/guardar/")
@@ -88,5 +98,12 @@ public class DirectorController {
     @GetMapping("/pelicula/agregar/{idDirector}/{idPelicula}")
     public void agregarPelicula(@PathVariable("idDirector") Integer idDirector, @PathVariable("idPelicula") Integer idPelicula) {
         directorService.agregarPelicula(idDirector, idPelicula);
+    }
+    @GetMapping(value = "/ver/{id}")
+    public String ver(Model model, @PathVariable("id") Integer id, RedirectAttributes attributes) {
+        Director director = directorService.buscarDirectorPorId(id);
+        model.addAttribute(directoresv, director);
+        model.addAttribute(tituloVentana, "Detalles del Director: " + director.getNombre());
+        return "directores/verDirector";
     }
 }

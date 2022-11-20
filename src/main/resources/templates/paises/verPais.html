@@ -11,13 +11,13 @@
         <div class="card-header" th:text="${titulo}"></div>
         <div class="card-body">
             <ul class="list-group">
-                <li class="list-group-item active" th:text="${genero.idGenero}"></li>
-                <li class="list-group-item" th:text="${genero.genero}"></li>
+                <li class="list-group-item active" th:text="${pais.idPais}"></li>
+                <li class="list-group-item" th:text="${pais.pais}"></li>
             </ul>
         </div>
     </div>
     <hr>
-    <a class="btn btn-primary" role="button" th:href="@{/cgeneros/listado}">Volver al listado de Géneros</a>
+    <a class="btn btn-primary" role="button" th:href="@{/cpaises/listado}">Volver al listado de Países</a>
 </div>
 </body>
 </html>

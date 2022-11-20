@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 public interface IDirectorService {
     Page<Director> buscarTodos(Pageable pageable);
     Director buscarDirectorPorId(Integer idDirector);
-    Director buscarDirectorPorNombre(String nombre);
+    Page<Director> buscarDirectorPorNombre(String nombre, Pageable pageable);
     void guardarDirector(Director director);
     void eliminarDirector(Integer idDirector);
     void agregarPelicula(Integer idDirector, Integer idPelicula);

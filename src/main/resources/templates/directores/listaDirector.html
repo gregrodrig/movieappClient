@@ -36,9 +36,14 @@
                         </table>
                     </td>
                     <td>
+                        <a th:href="@{/cdirectores/ver/{id}  (id=${director.idDirector})  }" th:text="'Ver'"
+                           class="btn btn-primary btn-sm" role="button" title="Ver Director en detalle.">
+                            <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                        </a>
                         <a th:href="@{/cdirectores/editar/{id}  (id=${director.idDirector})  }" th:text="'Editar'"
                            class="btn btn-success btn-sm" role="button" title="Editar Director.">
-                            <i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                            <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                        </a>
                         <a th:href="@{/cdirectores/borrar/{id}  (id=${director.idDirector})   }" th:text="'Borrar'"
                            onclick="return confirm('¿Estas seguro?')" class="btn btn-danger btn-sm" role="button"
                            title="Eliminar Director."><i class="fas fa-trash" aria-hidden="true"></i></a>

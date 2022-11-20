@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>MovieApp | Aplicación de gestión de películas</title>
@@ -8,11 +8,11 @@
 <body>
 <div class="container">
     <div class="card">
-        <h2 th:text="${titulo}" class="card-header"></h2>
+        <h2 class="card-header" th:text="${titulo}"></h2>
         <div class="card-body">
-            <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
+            <div class='alert alert-success' role='alert' th:if="${msg != null}" th:text="${msg}"></div>
             <h4 class="card-title">
-                <a th:href="@{/cactores/nuevo}" class="btn btn-primary btn-xs">Crear nuevo Actor</a>
+                <a class="btn btn-primary btn-xs" th:href="@{/cactores/nuevo}">Crear nuevo Actor</a>
             </h4>
             <table class="table table-hover">
                 <thead class="thead-light">
@@ -33,21 +33,24 @@
                     <td th:text="${actor.fechaNacimiento}"></td>
                     <td th:text="${actor.tblPaisIdPais}"></td>
                     <td>
-                        <table>
-                            <tbody>
-                                <tr th:each="pelicula: ${actor.peliculas}">
-                                    <td th:text="${pelicula.titulo}"></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <ul>
+                            <li th:each="pelicula: ${actor.peliculas}">
+                                <a th:text="${pelicula.titulo}"></a>
+                            </li>
+                        </ul>
                     </td>
                     <td>
-                        <a th:href="@{/cactores/editar/{id}  (id=${actor.idActor})  }" th:text="'Editar'"
-                           class="btn btn-success btn-sm" role="button" title="Editar Actor.">
-                            <i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
-                        <a th:href="@{/cactores/borrar/{id}  (id=${actor.idActor})   }" th:text="'Borrar'"
-                           onclick="return confirm('¿Estas seguro?')" class="btn btn-danger btn-sm" role="button"
-                           title="Eliminar Actor."><i class="fas fa-trash" aria-hidden="true"></i></a>
+                        <a class="btn btn-primary btn-sm" role="button"
+                           th:href="@{/cactores/ver/{id}  (id=${actor.idActor})  }" th:text="'Ver'" title="Ver el Actor en detalle.">
+                            <i aria-hidden="true" class="fas fa-pencil-alt"></i>
+                        </a>
+                        <a class="btn btn-success btn-sm" role="button"
+                           th:href="@{/cactores/editar/{id}  (id=${actor.idActor})  }" th:text="'Editar'" title="Editar Actor.">
+                            <i aria-hidden="true" class="fas fa-pencil-alt"></i>
+                        </a>
+                        <a class="btn btn-danger btn-sm" onclick="return confirm('¿Estas seguro?')"
+                           role="button" th:href="@{/cactores/borrar/{id}  (id=${actor.idActor})   }" th:text="'Borrar'"
+                           title="Eliminar Actor."><i aria-hidden="true" class="fas fa-trash"></i></a>
                     </td>
                 </tr>
                 </tbody>

@@ -1,6 +1,7 @@
 package es.uah.movieappCliente.service;
 
 import es.uah.movieappCliente.model.Director;
+import es.uah.movieappCliente.model.Pelicula;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -49,9 +50,11 @@ public class DirectorServiceImpl implements IDirectorService{
     }
 
     @Override
-    public Director buscarDirectorPorNombre(String nombre) {
-        Director director = template.getForObject(url+"/nombre/"+nombre, Director.class);
-        return director;
+    public Page<Director> buscarDirectorPorNombre(String nombre, Pageable pageable) {
+        Director[] director = template.getForObject(url + "/nombre/" + nombre, Director[].class);
+        List<Director> lista = Arrays.asList(director);
+        Page<Director> page = new PageImpl<>(lista, pageable, lista.size());
+        return page;
     }
 
     @Override

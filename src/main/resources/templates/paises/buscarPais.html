@@ -8,15 +8,15 @@
 <body>
 <div class="container">
     <div class="card">
-        <h2 class="card-header">Búsqueda de Generos existentes</h2>
+        <h2 class="card-header">Búsqueda de Países existentes</h2>
         <div class="card-body">
-            <form method="get" th:action="@{/cgeneros/genero}">
+            <form method="get" th:action="@{/cpaises/pais}">
                 <div class="mb-3">
-                    <label class="form-label" for="genero">Genero</label>
-                    <input class="form-control" id="genero" name="genero" placeholder="Escriba el Genero"
+                    <label class="form-label" for="pais">Actor</label>
+                    <input class="form-control" id="pais" name="pais" placeholder="Escriba el nombre del País"
                            type="text">
                 </div>
-                <button class="btn btn-success" type="submit">Buscar Genero</button>
+                <button class="btn btn-success" type="submit">Buscar País</button>
             </form>
             <hr>
             <a class="btn btn-primary" role="button" th:href="@{/cpeliculas}">Ir a Inicio</a>

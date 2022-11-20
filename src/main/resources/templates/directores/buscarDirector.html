@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>MovieApp | Aplicación de gestión de películas</title>
@@ -7,17 +7,21 @@
 </head>
 <body>
 <div class="container">
-    <h2 class="text-secondary border border-success border-top-0 border-left-0 border-right-0">Búsqueda de Directores existentes</h2>
-    <form th:action="@{/cdirectores/director}" method="get">
-        <div class="mb-3">
-            <label for="nombre" class="form-label">Director</label>
-            <input type="text" class="form-control" id="nombre" name="nombre"
-                   placeholder="Escriba el nombre del Director">
+    <div class="card">
+        <h2 class="card-header">Búsqueda de Directores existentes</h2>
+        <div class="card-body">
+            <form method="get" th:action="@{/cdirectores/nombre}">
+                <div class="mb-3">
+                    <label class="form-label" for="nombre">Director</label>
+                    <input class="form-control" id="nombre" name="nombre" placeholder="Escriba el nombre del Director"
+                           type="text">
+                </div>
+                <button class="btn btn-success" type="submit">Buscar Director</button>
+            </form>
+            <hr>
+            <a class="btn btn-primary" role="button" th:href="@{/cpeliculas}">Ir a Inicio</a>
         </div>
-        <button type="submit" class="btn btn-success">Buscar Director</button>
-    </form>
-    <hr>
-    <a class="btn btn-primary" role="button" th:href="@{/cpeliculas}">Ir a Inicio</a>
+    </div>
 </div>
 <script th:src="@{/js/bootstrap.min.js}"></script>
 </body>

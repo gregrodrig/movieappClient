@@ -1,10 +1,9 @@
 package es.uah.movieappCliente.model;
-import java.sql.Time;
 
 public class Pelicula {
     private Integer idPelicula;
     private String titulo;
-    private Time duracion;
+    private Integer duracion;
     private String sinopsis;
     private String imagen;
     private String anno;
@@ -13,7 +12,7 @@ public class Pelicula {
     public Pelicula() {
     }
 
-    public Pelicula(Integer idPelicula, String titulo, Time duracion, String sinopsis, String imagen, String anno, Integer tblPaisIdPais) {
+    public Pelicula(Integer idPelicula, String titulo, Integer duracion, String sinopsis, String imagen, String anno, Integer tblPaisIdPais) {
         this.idPelicula = idPelicula;
         this.titulo = titulo;
         this.duracion = duracion;
@@ -39,11 +38,11 @@ public class Pelicula {
         this.titulo = titulo;
     }
 
-    public Time getDuracion() {
+    public Integer getDuracion() {
         return duracion;
     }
 
-    public void setDuracion(Time duracion) {
+    public void setDuracion(Integer duracion) {
         this.duracion = duracion;
     }
 
